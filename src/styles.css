@@ -1,0 +1,134 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Orbitron", sans-serif;
+  --font-sans: "Rajdhani", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-kick: var(--kick);
+  --color-youtube: var(--youtube);
+  --color-partner: var(--partner);
+  --color-verified: var(--verified);
+  --color-kr: var(--kr);
+  --color-discord: var(--discord);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.12 0.01 160);
+  --foreground: oklch(0.96 0.01 90);
+  --card: oklch(0.17 0.015 160);
+  --card-foreground: oklch(0.96 0.01 90);
+  --popover: oklch(0.17 0.015 160);
+  --popover-foreground: oklch(0.96 0.01 90);
+  --primary: oklch(0.82 0.15 85);
+  --primary-foreground: oklch(0.15 0.02 160);
+  --secondary: oklch(0.22 0.02 160);
+  --secondary-foreground: oklch(0.96 0.01 90);
+  --muted: oklch(0.22 0.02 160);
+  --muted-foreground: oklch(0.7 0.02 120);
+  --accent: oklch(0.62 0.18 150);
+  --accent-foreground: oklch(0.12 0.01 160);
+  --destructive: oklch(0.6 0.23 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.82 0.15 85 / 18%);
+  --input: oklch(0.82 0.15 85 / 25%);
+  --ring: oklch(0.82 0.15 85);
+  --gold: oklch(0.82 0.15 85);
+  --kick: oklch(0.86 0.27 142);
+  --youtube: oklch(0.6 0.24 27);
+  --partner: oklch(0.62 0.19 250);
+  --verified: oklch(0.72 0.19 155);
+  --kr: oklch(0.6 0.23 27);
+  --discord: oklch(0.58 0.2 275);
+  --gradient-gold: linear-gradient(135deg, oklch(0.9 0.12 90), oklch(0.72 0.15 75), oklch(0.9 0.12 90));
+  --glow-gold: 0 0 40px oklch(0.82 0.15 85 / 35%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image: radial-gradient(ellipse at top, oklch(0.25 0.06 150 / 50%), transparent 60%);
+    background-attachment: fixed;
+  }
+}
+
+@utility text-gold-gradient {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility glow-gold { box-shadow: var(--glow-gold); }
+
+@keyframes intro-zoom { 0% { transform: scale(0.3) rotate(-20deg); opacity: 0; filter: blur(20px);} 60% { transform: scale(1.1); opacity: 1; filter: blur(0);} 100% { transform: scale(1);} }
+@keyframes slide-l { from { transform: translateX(-60vw); opacity: 0;} to { transform: none; opacity: 1;} }
+@keyframes slide-r { from { transform: translateX(60vw); opacity: 0;} to { transform: none; opacity: 1;} }
+@keyframes blink { 50% { opacity: 0.2; } }
+@keyframes scan { from { transform: translateY(-100%);} to { transform: translateY(100vh);} }
+@keyframes float { 50% { transform: translateY(-10px); } }
+
+@utility animate-intro-zoom { animation: intro-zoom 1.4s cubic-bezier(.2,.8,.2,1) both; }
+@utility animate-slide-l { animation: slide-l 1s 1.2s cubic-bezier(.2,.8,.2,1) both; }
+@utility animate-slide-r { animation: slide-r 1s 1.2s cubic-bezier(.2,.8,.2,1) both; }
+@utility animate-blink { animation: blink 1.4s infinite; }
+@utility animate-scan { animation: scan 3s linear infinite; }
+@utility animate-float { animation: float 4s ease-in-out infinite; }
+
+.globe-marker { position: absolute; left: 0; top: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; font-weight: 600; font-size: 12px; max-width: 110px; text-align: center; }
+.globe-marker[hidden] { display: none; }
+.globe-avatar { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 2px solid currentColor; border-radius: 50%; background: var(--card); overflow: hidden; }
+.globe-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.hover-zoom { transition: transform 220ms ease, border-color 220ms ease; }
+@media (hover: hover) { .hover-zoom:hover { transform: scale(1.045); border-color: var(--primary); z-index: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@keyframes scroll-dot { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(16px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@keyframes scroll-bounce { 0%,100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(10px); opacity: 1; } }
+@keyframes scroll-glow { 0%,100% { opacity: .6; letter-spacing: .2em; } 50% { opacity: 1; letter-spacing: .35em; } }
+@utility animate-scroll-dot { animation: scroll-dot 1.6s ease-in-out infinite; }
+@utility animate-scroll-bounce { animation: scroll-bounce 1.2s ease-in-out infinite; }
+@utility animate-scroll-glow { animation: scroll-glow 2s ease-in-out infinite; }
+
+@keyframes twinkle { 0%,100% { opacity: .15; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.2); } }
+@keyframes drift { from { transform: translateY(0); } to { transform: translateY(-100vh); } }
+@keyframes logo-float { 0%,100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-14px) rotate(1.5deg); } }
+@keyframes logo-glow { 0%,100% { opacity: .35; transform: scale(.9); } 50% { opacity: .8; transform: scale(1.15); } }
+@keyframes shoot { 0% { transform: translate(0,0) rotate(-35deg); opacity: 0; } 5% { opacity: 1; } 20%,100% { transform: translate(-60vw,40vh) rotate(-35deg); opacity: 0; } }
+@utility animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+@utility animate-drift { animation: drift linear infinite; }
+@utility animate-logo-float { animation: logo-float 4s ease-in-out infinite; }
+@utility animate-logo-glow { animation: logo-glow 3s ease-in-out infinite; }
+@utility animate-shoot { animation: shoot 6s ease-in infinite; }

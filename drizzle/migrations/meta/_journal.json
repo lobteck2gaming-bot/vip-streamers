@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792691316458,
+      "tag": "0000_create_community_members",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792692959708,
+      "tag": "0001_add_member_badge",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+ALTER TABLE public.community_members ADD COLUMN badge text NOT NULL DEFAULT 'none';
